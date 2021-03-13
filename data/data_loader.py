@@ -228,7 +228,6 @@ class Dataset_Custom(Dataset):
         if self.date_column:
             df_raw.rename(columns={self.date_column: 'date'},inplace = True)
         print(df_raw.columns)
-        print(df_raw.head())
         '''
         df_raw.columns: ['date', ...(other features), target feature]
         '''
@@ -258,6 +257,7 @@ class Dataset_Custom(Dataset):
             
         df_stamp = df_raw[['date']][border1:border2]
         df_stamp['date'] = pd.to_datetime(df_stamp.date)
+        print(df_stamp.head())
         if self.timeenc==0:
             df_stamp['month'] = df_stamp.date.apply(lambda row:row.month,1)
             df_stamp['day'] = df_stamp.date.apply(lambda row:row.day,1)
@@ -268,6 +268,7 @@ class Dataset_Custom(Dataset):
             data_stamp = time_features(pd.to_datetime(df_stamp['date'].values), freq=self.freq)
             data_stamp = data_stamp.transpose(1,0)
 
+        print(df_stamp.head())
         self.data_x = data[border1:border2]
         self.data_y = data[border1:border2]
         self.data_stamp = data_stamp
