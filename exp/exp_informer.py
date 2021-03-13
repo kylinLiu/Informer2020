@@ -81,7 +81,7 @@ class Exp_Informer(Exp_Basic):
             timeenc=timeenc,
             freq=args.freq,
             delete_column_list = args.delete_column_list,
-            date_column = args.date_column,
+            date_column = args.date_column
         )
         print(flag, len(data_set))
         data_loader = DataLoader(
