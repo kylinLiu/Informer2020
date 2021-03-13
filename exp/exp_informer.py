@@ -149,12 +149,14 @@ class Exp_Informer(Exp_Basic):
         model_optim = self._select_optimizer()
         criterion =  self._select_criterion()
 
+        print("train_epochs",train_epochs)
         for epoch in range(self.args.train_epochs):
             iter_count = 0
             train_loss = []
             
             self.model.train()
             for i, (batch_x,batch_y,batch_x_mark,batch_y_mark) in enumerate(train_loader):
+                print("i",i)
                 iter_count += 1
                 
                 model_optim.zero_grad()
@@ -204,6 +206,7 @@ class Exp_Informer(Exp_Basic):
             adjust_learning_rate(model_optim, epoch+1, self.args)
             
         best_model_path = path+'/'+'checkpoint.pth'
+        print("save",best_model_path)
         self.model.load_state_dict(torch.load(best_model_path))
         
         return self.model
