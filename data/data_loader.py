@@ -228,6 +228,7 @@ class Dataset_Custom(Dataset):
         if self.date_column:
             df_raw.rename(columns={self.date_column: 'date'},inplace = True)
         print(df_raw.columns)
+        print(df_raw.head())
         '''
         df_raw.columns: ['date', ...(other features), target feature]
         '''
