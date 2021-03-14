@@ -175,7 +175,7 @@ class Exp_Informer(Exp_Basic):
                     outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)[0]
                 else:
                     outputs = self.model(batch_x, batch_x_mark, dec_inp, batch_y_mark)
-                print("outputs:",outputs)
+#                 print("outputs:",outputs)
                 f_dim = -1 if self.args.features=='MS' else 0
                 batch_y = batch_y[:,-self.args.pred_len:,f_dim:].to(self.device)
                 loss = criterion(outputs, batch_y)
@@ -206,8 +206,9 @@ class Exp_Informer(Exp_Basic):
             adjust_learning_rate(model_optim, epoch+1, self.args)
             
         best_model_path = path+'/'+'checkpoint.pth'
-        print("save",best_model_path)
+        print("save 00000000000000000",best_model_path)
         self.model.load_state_dict(torch.load(best_model_path))
+        print("save 00000000000000000",best_model_path)
         
         return self.model
 
