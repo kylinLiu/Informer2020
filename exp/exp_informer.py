@@ -180,6 +180,9 @@ class Exp_Informer(Exp_Basic):
                 batch_y = batch_y[:,-self.args.pred_len:,f_dim:].to(self.device)
                 loss = criterion(outputs, batch_y)
                 train_loss.append(loss.item())
+                print(outputs)
+                print( batch_y)
+                time.sleep(9)
                 
                 if (i+1) % 100==0:
                     print("\titers: {0}, epoch: {1} | loss: {2:.7f}".format(i + 1, epoch + 1, loss.item()))
